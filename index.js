@@ -96,6 +96,10 @@ function getSegmentEndInput(index) {
   return `segment-${index}-end`;
 }
 
+function getSegmentTimeId(index) {
+  return `segment-${index}-time`;
+}
+
 function updateSegments() {
   // if adding segments
   while (segmentsNumber > times.length) {
@@ -116,6 +120,9 @@ function updateSegments() {
         <p>
           <label for="${endId}">Chapter ${segmentNumber} End</label>
           <input id="${endId}" type="text" />
+        </p>
+        <p>
+          Chapter ${segmentNumber} time: <span id="${getSegmentTimeId(segmentIndex)}"></span>
         </p>
       </div>
     `);
@@ -166,8 +173,10 @@ function rereadTimes() {
 
 function updateTimes() {
   let igt = 0;
-  times.forEach((time) => {
-    igt += time[1] - time[0];
+  times.forEach((time, i) => {
+    const segmentTime = time[1] - time[0];
+    document.getElementById(getSegmentTimeId(i)).innerText = parseTime(segmentTime);
+    igt += segmentTime;
   });
 
   const rta = times.slice(-1)[0][1] - times[0][0];
