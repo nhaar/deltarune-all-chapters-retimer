@@ -160,7 +160,25 @@ function parseTime(time) {
   const framesToUse = Math.abs(computedFrames - Math.round(computedFrames)) < 0.1 ? Math.round(computedFrames) : Math.floor(computedFrames);
   let ms = Math.round(framesToUse / 30 * 1000);
 
-  return `${hours}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s ${String(ms).padStart(3, '0')}ms`;
+  let timeStrings = [];
+  // variable will be used to ommit hours, minutes if not needed, will start true and once we have found a valid value,
+  // then it will be false so we know for sure to add all remaining times to the string
+  let allowOmmit = true;
+
+  for (const timeInfo of [
+    { pad: 1, name: 'h', value: hours, optional: true },
+    { pad: 2, name: 'm', value: minutes, optional: true },
+    { pad: 2, name: 's', value: seconds, optional: false },
+    { pad: 3, name: 'ms', value: ms, optional: false }
+  ]) {
+    if (allowOmmit && (timeInfo.optional && timeInfo.value === 0)) {
+      continue;
+    }
+    allowOmmit = false;
+    timeStrings.push(`${String(timeInfo.value).padStart(timeInfo.pad, '0')}${timeInfo.name}`);
+  }
+
+  return timeStrings.join(' ');
 }
 
 function rereadTimes() {
