@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deltarune All Chapters Retimer</title>
+</head>
+<body>
+  <h1>
+    Info
+  </h1>
+  <p>
+    A tool to calculate Deltarune All Chapter times
+  </p>
+  <p>
+    To use it, pick your method of getting timestamps from the video (see "Retimer"), and add the proper timestamps in the "Times" field below
+  </p>
+  <h2>
+    Retimer
+  </h2>
+  <p>
+    Please use one of the verified retiming tools, as they are confirmed to be as accurate as possible:
+  </p>
+  <ul>
+    <li>
+      <a href="https://vidtimer.com/">Vidtimer</a> - Make sure to set the proper video framerate, and copy the "ff:ss" time
+    </li>
+    <li>
+      <a href="https://somewes.com/frame-count/">Somewes</a> - Make sure to set the proper video framerate, copy either the "Frame Time" or the "Current Frame" field
+    </li>
+  </ul>
+  <h2>
+    Supported Formats
+  </h2>
+  <p>
+    These are the allowed formats you can input in the fields below:
+    <ul>
+      <li>A raw frame count, which will be detected if you only give nothing but a number</li>
+      <li>Time in the format "ss:ff" (seconds: frames)</li>
+      <li>Time in the format "hh:mm:ss.decimal" (hours, minutes, seconds, decimals), with hours and minutes being optional</li>
+    </ul>
+  </p>
+  <h1>
+    Segments/Chapters
+  </h1>
+  <p>
+    <label for="segments-input">Segments:</label>
+    <input type="number" id="segments-input" />
+  </p>
+  <h1>
+    Video Framerate
+  </h1>
+  <p>
+    This is only if using a timestamp that depends on a frame
+  </p>
+  <p>
+    <input type="radio" checked id="30-fps-input" name="framerate" />
+    <label for="30-fps-input">30 FPS</label>
+  </p>
+  <p>
+    <input type="radio" id="60-fps-input" name="framerate" />
+    <label for="60-fps-input">60 FPS</label>
+  </p>
+  <h1>
+    Times
+  </h1>
+  <p id="time-inputs"></p>
+  <p id="time-outputs"></p>
+  <h2>
+    IGT time
+  </h2>
+  <p>
+    <input type="text" readonly id="igt-input" />
+  </p>
+  <h2>
+    RTA time
+  </h2>
+  <p>
+    <input type="text" readonly id="rta-input" />
+  </p>
+</body>
+<script src="index.js"></script>
+</html>
