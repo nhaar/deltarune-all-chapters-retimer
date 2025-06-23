@@ -60,11 +60,17 @@ function getSegmentsNumber() {
 
 const segmentsInput = document.getElementById('segments-input');
 
+const ps5Input = document.getElementById('ps5-input');
+
 segmentsInput.value = segmentsNumber
 segmentsInput.onchange = (e) => {
   segmentsNumber = Number(e.target.value);
   localStorage.setItem('segments', e.target.value);
   updateSegments();
+  updateTimes();
+}
+
+ps5Input.onchange = () => {
   updateTimes();
 }
 
@@ -146,6 +152,12 @@ function updateSegments() {
 function parseTime(time) {
   if (time < 0) {
     time = 0;
+  }
+
+  const isPs5 = ps5Input.checked;
+
+  if (isPs5) {
+    time = time / 30 * 31;
   }
 
   let decimal = time % 1;
